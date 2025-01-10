@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <NavBar />
     <v-main>
       <HomeView />
     </v-main>
@@ -8,10 +9,12 @@
 
 <script>
 import HomeView from "@/views/HomeView.vue";
+import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'App',
   components: {
+    NavBar,
     HomeView,
   },
   data: () => ({
@@ -19,3 +22,5 @@ export default {
   }),
 }
 </script>
+
+

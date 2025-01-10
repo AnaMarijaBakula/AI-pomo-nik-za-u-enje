@@ -1,103 +1,85 @@
-<template>
-  <div :class="['desktop-container', className]"> <!-- Glavni container za cijeli desktop -->
-    <div class="content-area"> <!-- Glavni prostor gdje se nalazi sav sadržaj -->
-      <div class="background-pravokutnik" /> <!-- Pozadinski pravokutnik sa gradijentom -->
-      <button class="get-start">Get Started</button>
-      <div class="headline-text">Learning With AI</div>
-      <p class="description-text">
-        Learning has never been so intuitive and efficient,
-        <br>with support that follows your pace and needs!
-      </p>
-    </div>
-  </div>
-  <!-- dodat logo-->
-</template>
+<script setup>
 
-<script>
-
+defineProps(['style']);
+import FrameCenter from "@/components/FrameCenter.vue";
 </script>
 
-<style>
-/*crni dio prostora*/
-.desktop-container {
-  background-color: #131313;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden; /* spriječavanje pomicanja stranice */
+<template>
+  <FrameCenter>
+          <div class="main-content">
+            <span class="text"> Level Up Your Code </span>
+            <span class="text_1">
+              Starting out can be overwhelming, so we focus on what matters—your project. Through code analysis, we offer practical advice to help you master best practices and grow confidently as a
+              programmer. Build smarter with our support!
+            </span>
+          </div>
+          <div class="style_outlined_1">
+            <span class="text_3"> Get Started </span>
+          </div>
+  </FrameCenter>
+</template>
+
+<style scoped>
+
+/* Auto Layout Vertical */
+.main-content {
+  width: 612px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  position: relative;
 }
 
-/* Glavni prostor u kojem je sadržaj */
-.content-area {
-  height: 80vh;
-  width: 80%;
-  padding: 50px; /* Unutarnji razmak */
+/* Auto Layout Vertical */
+.text {
+  width: 612px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 48px;
+  font-family: Poppins;
+  font-weight: 600;
+  line-height: 120px;
+  color: #333333;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
 }
 
-/* plavi dio */
-.background-pravokutnik {
-  background: linear-gradient(#99BADB, #7DA1C5, #577FA7, #0B3A6A);
-  border-radius: 25px;
-  height: 100%;
-  width: 100%;
-  position: absolute; /* ovaj dio stavljamo kako bi se plava boja dobro poslozila na desnoj strani*/
+/* Starting out can be overwhelming, so we focus on what matters—your project. Through code analysis, we offer practical advice to help you master best practices and grow confidently as a programmer. Build smarter with our support! */
+.text_1 {
+  width: 612px;
+  flex-shrink: 0;
+  font-size: 20px;
+  font-family: 'DM Sans';
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+  color:  #8ca2c0;
 }
 
-/* Gumb za početak */
-.get-start {
-  color: white;
-  font-family: "Jomolhari", sans-serif;
-  font-size: 30px;
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  transform: translateX(-50%); /* Dovodi gumb u sredinu */
-  background-color: #131313;
-  border-radius: 10px;
-  padding: 20px 40px;
+.style_outlined_1 {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(60deg, #4E89FD, #A24CFE) border-box;
+  padding: 15px 30px 15px 30px ;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  display: inline-block;
 }
 
-/* Naslov stranice */
-.headline-text {
-  color: white;
-  font-family: "Jomolhari", sans-serif;
-  font-size: 90px;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Pomicanje za centriranje */
-  text-shadow: 2px 6px 6px rgba(0, 0, 0, 0.7); /* Sjena za naslov */
-}
-
-/* Opis stranice */
-.description-text {
-  color: white;
-  font-family: "Jomolhari", sans-serif;
-  font-size: 30px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Pomicanje za centriranje */
-  text-shadow: 2px 6px 6px rgba(0, 0, 0, 0.7);
-}
-
-/* Responsive dizajn za manje ekrane */
-@media (max-width: 768px) {
-  /* Smanjujemo razmake za manju širinu ekrana */
-  .content-area {
-    padding: 20px; /* Manji razmak u sadržaju */
-  }
-
-  .headline-text {
-    font-size: 50px; /* Manja veličina fonta za manje ekrane */
-  }
-
-  .description-text {
-    font-size: 20px; /* Manja veličina fonta za manje ekrane */
-  }
-
-  .get-start {
-    font-size: 25px; /* Manja veličina fonta za gumb */
-    padding: 15px 30px; /* Manji unutarnji razmak za gumb */
-  }
+.text_3 {
+  color: #624F82;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;  /* Font */
+  font-weight: 600;  /* Možda podešavate težinu fonta */
+  font-size: 16px;  /* Veličina fonta */
+  letter-spacing: 1px;  /* Razmak između slova */
 }
 </style>
