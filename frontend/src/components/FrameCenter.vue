@@ -1,28 +1,28 @@
 <template>
-  <div class="white-frame">
-    <slot></slot> <!-- Ovo omogućava da unutar okvira umetneš sadržaj -->
-  </div>
+  <v-container>
+    <v-row justify="center">
+      <v-col :cols="12" :md="8" :lg="6" :xl="2">
+        <div class="white-frame">
+          <slot></slot>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup>
-
 </script>
 
 <style scoped>
 .white-frame {
-  width: 904px;
-  height: 483px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 48px;
-  padding-bottom: 48px;
+  padding: 10px;
   gap: 10px;
-  flex-shrink: 0;
-  overflow: hidden;
   border-radius: 10px;
   background-color: #ffffff;
-  position: relative;
 }
 </style>
