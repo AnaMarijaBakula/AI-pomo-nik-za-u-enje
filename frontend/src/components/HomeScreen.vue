@@ -7,13 +7,13 @@ import FrameCenter from "@/components/FrameCenter.vue";
 <template>
   <FrameCenter>
           <div class="main-content">
-            <span class="text"> Level Up Your Code </span>
-            <span class="text_1">
+            <span class="title"> Level Up Your Code </span>
+            <span class="text">
               Starting out can be overwhelming, so we focus on what matters—your project. Through code analysis, we offer practical advice to help you master best practices and grow confidently as a
               programmer. Build smarter with our support!
             </span>
           </div>
-          <div class="style_outlined_1">
+          <div class="button">
             <span class="text_3"> Get Started </span>
           </div>
   </FrameCenter>
@@ -21,7 +21,6 @@ import FrameCenter from "@/components/FrameCenter.vue";
 
 <style scoped>
 
-/* Auto Layout Vertical */
 .main-content {
   width: 612px;
   display: flex;
@@ -33,8 +32,7 @@ import FrameCenter from "@/components/FrameCenter.vue";
   position: relative;
 }
 
-/* Auto Layout Vertical */
-.text {
+.title {
   width: 612px;
   height: 120px;
   display: flex;
@@ -53,8 +51,8 @@ import FrameCenter from "@/components/FrameCenter.vue";
   padding-left: 0;
 }
 
-/* Starting out can be overwhelming, so we focus on what matters—your project. Through code analysis, we offer practical advice to help you master best practices and grow confidently as a programmer. Build smarter with our support! */
-.text_1 {
+
+.text {
   width: 612px;
   flex-shrink: 0;
   font-size: 20px;
@@ -63,9 +61,10 @@ import FrameCenter from "@/components/FrameCenter.vue";
   line-height: 32px;
   letter-spacing: 0.5px;
   color:  #8ca2c0;
+  padding-bottom: 20px;
 }
 
-.style_outlined_1 {
+.button {
   background:
     linear-gradient(#fff, #fff) padding-box,
     linear-gradient(60deg, #4E89FD, #A24CFE) border-box;
