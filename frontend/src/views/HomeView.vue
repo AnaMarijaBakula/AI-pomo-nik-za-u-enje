@@ -9,6 +9,8 @@ import HomeScreen from '../components/HomeScreen.vue'
   </main>
 </template>
 
+
+
 <style scoped>
 .home {
   background-image: url('@/assets/GetStartedBackground.png');

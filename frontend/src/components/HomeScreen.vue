@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col :cols="12" :md="8" :lg="6" :xl="2">
-        <div class="white-frame">
+        <FrameCenter>
           <div class="main-content">
             <span class="text">Level Up Your Code</span>
             <span class="text_1">
@@ -14,32 +14,21 @@
           <v-btn class="style_outlined_1" color="primary" @click="start">
             <span class="text_3">Get Started</span>
           </v-btn>
-        </div>
+        </FrameCenter>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup>
+import FrameCenter from "@/components/FrameCenter.vue";
+
 const start = () => {
   console.log("Get Started clicked");
 }
 </script>
 
 <style scoped>
-.white-frame {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  max-width: 700px; /* Ovdje možeš postaviti maksimalnu širinu okvira */
-  width: 100%;
-}
 
 .main-content {
   width: 100%;
