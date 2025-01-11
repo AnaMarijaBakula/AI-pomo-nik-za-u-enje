@@ -24,9 +24,7 @@ const triggerFileInput = () => {
 <template>
   <FrameCenter>
     <div class="main-content">
-      <div class="title">
-        <span class="title-text">Upload your project here</span>
-      </div>
+        <span class="title">Upload your project here</span>
       <div
         class="upload-file"
         @dragover.prevent

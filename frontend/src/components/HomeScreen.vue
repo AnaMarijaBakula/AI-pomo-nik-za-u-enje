@@ -8,14 +8,15 @@ import FrameCenter from "@/components/FrameCenter.vue";
   <FrameCenter>
           <div class="main-content">
             <span class="title"> Level Up Your Code </span>
-            <span class="text">
+            <span class=   "text">
               Starting out can be overwhelming, so we focus on what matters—your project. Through code analysis, we offer practical advice to help you master best practices and grow confidently as a
               programmer. Build smarter with our support!
             </span>
           </div>
-          <div class="button">
-            <span class="text_3"> Get Started </span>
-          </div>
+          <router-link to="/uploadproject" class="button" style="text-decoration: none">
+            <span class = "text_3">Get Started</span>
+          </router-link>
+
   </FrameCenter>
 </template>
 
