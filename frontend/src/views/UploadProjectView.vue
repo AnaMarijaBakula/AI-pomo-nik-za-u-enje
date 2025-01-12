@@ -1,10 +1,11 @@
 <script setup>
-import HomeScreen from '../components/HomeScreen.vue'
+import UploadProject from '../components/UploadProject.vue'
+
 </script>
 
 <template>
   <main class="home">
-    <HomeScreen />
+    <UploadProject />
   </main>
 </template>
 
@@ -21,3 +22,6 @@ import HomeScreen from '../components/HomeScreen.vue'
   position: relative;
 }
 </style>
+
+
+
