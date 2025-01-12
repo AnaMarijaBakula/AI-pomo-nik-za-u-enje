@@ -10,19 +10,16 @@
 
 <style scoped>
 .white-frame {
-  width: 904px;
-  height: 483px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 48px;
-  padding-bottom: 48px;
+  padding: 10px;
   gap: 10px;
-  flex-shrink: 0;
-  overflow: hidden;
   border-radius: 10px;
   background-color: #ffffff;
-  position: relative;
+  max-width: 700px; /* Ovdje možeš postaviti maksimalnu širinu okvira */
+  width: 100%;
 }
 </style>

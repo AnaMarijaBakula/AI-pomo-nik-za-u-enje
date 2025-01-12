@@ -4,7 +4,7 @@ import HomeScreen from '../components/HomeScreen.vue'
 
 <template>
   <main class="home">
-  <HomeScreen />
+    <HomeScreen />
   </main>
 </template>
 
@@ -21,6 +21,3 @@ import HomeScreen from '../components/HomeScreen.vue'
   position: relative;
 }
 </style>
-
-
-
