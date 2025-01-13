@@ -55,7 +55,7 @@ import { ref, computed } from 'vue';  // Uvoz Vue funkcija za rad sa reaktivnim 
 import Button from "@/components/NavBarButton.vue";  // Importiranje dugmeta za navigaciju
 
 // Lista stavki u navigaciji
-const navItems = ["About Us", "Contact","Sing in"];
+const navItems = ["About Us", "Contact"];
 
 // Varijabla koja prati širinu prozora
 const screenWidth = ref(window.innerWidth);

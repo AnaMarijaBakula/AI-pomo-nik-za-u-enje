@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col :cols="12" :md="8" :lg="6" :xl="2">
+      <v-col :cols="12" :md="10" :lg="6" :xl="4">
         <FrameCenter>
           <div class="main-content">
             <span class="title"> Level Up Your Code </span>
