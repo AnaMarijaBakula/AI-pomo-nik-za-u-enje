@@ -20,38 +20,40 @@ const triggerFileInput = () => {
   document.getElementById('fileInput').click();
 };
 </script>
-
 <template>
-  <FrameCenter>
-    <div class="main-content">
-        <span class="title">Upload your project here</span>
-      <div
-        class="upload-file"
-        @dragover.prevent
-        @drop="handleDrop"
-      >
-        <span class="text_1">Drag & Drop your project folder</span>
-        <span class="text_2">OR</span>
-        <span class="text_3" @click="triggerFileInput">Select Project Folder</span>
+  <v-container>
+    <v-row justify="center">
+      <v-col :cols="12" :md="10" :lg="6" :xl="4">
+        <FrameCenter>
+          <div class="main-content">
+            <span class="title">Upload your project here</span>
+            <div
+              class="upload-file"
+              @dragover.prevent
+              @drop="handleDrop"
+            >
+              <span class="text_1">Drag & Drop your project folder</span>
+              <span class="text_2">OR</span>
+              <span class="text_3" @click="triggerFileInput">Select Project Folder</span>
 
-        <!-- Hidden file input to select folder -->
-        <input
-          type="file"
-          id="fileInput"
-          ref="fileInput"
-          @change="handleFileSelect"
-          multiple
-          webkitdirectory
-          style="display: none"
-        />
+              <input
+                type="file"
+                id="fileInput"
+                @change="handleFileSelect"
+                multiple
+                webkitdirectory
+                style="display: none"
+              />
 
-        <!-- Display selected files -->
-        <ul v-if="files.length">
-          <li v-for="(file, index) in files" :key="index">{{ file.name }}</li>
-        </ul>
-      </div>
-    </div>
-  </FrameCenter>
+              <ul v-if="files.length">
+                <li v-for="(file, index) in files" :key="index">{{ file.name }}</li>
+              </ul>
+            </div>
+          </div>
+        </FrameCenter>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <style scoped>
@@ -61,39 +63,16 @@ const triggerFileInput = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
-  position: relative;
-  height: auto;
-  min-height: 100%;
+  gap: 10px;
+  max-width: 90%;
 }
 
 .title {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-  font-size: 48px;
-  font-family: Poppins;
+  font-size: clamp(16px, 5vw, 40px);
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  line-height: 120px;
   color: #333333;
-  position: relative;
-}
-
-.title-text {
-  width: 612px;
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  padding-top: 0;
-  padding-right: 0;
-  padding-bottom: 0;
-  padding-left: 0;
+  text-align: center;
 }
 
 .upload-file {
@@ -102,10 +81,7 @@ const triggerFileInput = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 19px;
-  padding-right: 19px;
-  padding-bottom: 19px;
-  padding-left: 19px;
+  padding: 19px;
   gap: 10px;
   flex-shrink: 0;
   overflow: hidden;
@@ -118,22 +94,20 @@ const triggerFileInput = () => {
 }
 
 .text_1, .text_2 , .text_3{
-  flex-shrink: 0;
-  font-size: 20px;
-  font-family: 'DM Sans';
-  font-weight: 400;
-  line-height: 32px;
-  letter-spacing: 0.5px;
+  width: 100%;
+  font-size: clamp(12px, 4vw, 20px);
+  font-family: 'DM Sans', sans-serif;
   color: #8ca2c0;
-  white-space: pre;
+  text-align: center;
+  line-height: 32px;
 }
 
 .text_3 {
-  font-weight: 600;
-  color: #624f82;
-  cursor: pointer;
+  color: #624F82;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
-
 ul {
   list-style-type: none;
   padding: 0;
@@ -143,4 +117,11 @@ li {
   font-size: 14px;
   color: #333;
 }
+@media (max-width: 600px) {
+  .title {
+    font-size: 18px;
+  }
+}
+
+
 </style>
