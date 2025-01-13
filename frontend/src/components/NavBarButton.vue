@@ -27,7 +27,7 @@ defineProps(['style']);
   border-color: #624f82;
   background-color: #624f82;
   font-size: 16px;
-  font-family: 'DM Sans';
+  font-family: 'DM Sans',sans-serif;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
