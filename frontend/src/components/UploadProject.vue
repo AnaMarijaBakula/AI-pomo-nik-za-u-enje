@@ -117,7 +117,16 @@ li {
   font-size: 14px;
   color: #333;
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .upload-file{
+    width: 100%; /*Na manjim ekranima širina preuzima cijeli ekran*/
+    padding: 15px; /*Smanjivanje paddinga za manje ekrane*/
+  }
+
+  .text_1, .text_2, .text_3 {
+    font-size: clamp(10px,3vw,16px); /*Povećanje fonta za manje ekrane*/
+    line-height: 28px;
+  }
   .title {
     font-size: 18px;
   }
