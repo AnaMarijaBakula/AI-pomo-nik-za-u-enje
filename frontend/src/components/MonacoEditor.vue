@@ -12,27 +12,20 @@ export default {
         lineHeight: 24,
         tabSize: 2,
       },
-      test: '<style>\n' +
+      test: '<template>\n' +
+        '<button class = "text button">Get Started</button> \n' +
+        '</template> \n' +
+        '\n' +
+        '<style scooped>\n' +
         '.text {\n' +
-        '  width: 100%;\n' +
-        '  font-size: clamp(12px, 4vw, 20px);\n' +
-        '  font-family: \'DM Sans\', sans-serif;\n' +
-        '  color: #8ca2c0;\n' +
-        '  text-align: center;\n' +
-        '  line-height: 32px;\n' +
+        '  color : #4E89FD;  \n' +
+        '  font-family: "DM Sans", sans-serif \n' +
         '}\n' +
         '\n' +
         '.button {\n' +
-        '  background:\n' +
-        '    linear-gradient(#fff, #fff) padding-box,\n' +
-        '    linear-gradient(60deg, #4E89FD, #A24CFE) border-box;\n' +
-        '  padding: 15px 30px;\n' +
-        '  border: 2px solid transparent;\n' +
-        '  border-radius: 50px;\n' +
-        '  display: inline-block;\n' +
-        '  text-align: center;\n' +
-        '  font-size: 16px;\n' +
-        '}</style>',
+        '  background-color: #A24CFE ; \n' +
+        '} \n' +
+        '</style>',
     };
   },
 };

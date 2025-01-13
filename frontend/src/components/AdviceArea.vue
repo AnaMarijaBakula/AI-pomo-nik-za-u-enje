@@ -3,6 +3,22 @@ defineProps(['style']);
 import { VCard, VCardText, VCardTitle } from 'vuetify/components';
 import MonacoEditor from "@/components/MonacoEditor.vue";
 
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const adviceList = ref([]); // Ovdje ćemo pohraniti podatke iz API-ja
+
+const fetchAdvice = async () => {
+  try {
+    const response = await axios.get('http://localhost:5001/api/advice');
+    adviceList.value = response.data.advice;
+  } catch (error) {
+    console.error('Error fetching advice:', error);
+  }
+};
+
+onMounted(fetchAdvice);
+
 </script>
 
 <template>
@@ -17,17 +33,19 @@ import MonacoEditor from "@/components/MonacoEditor.vue";
         </div>
         <div class="advice-cards">
 
-          <v-card class="advice-card" outlined>
-            <v-card-title>Tip 1: Using Variables for Colors and Fonts</v-card-title>
+          <v-card
+            v-for="advice in adviceList"
+            :key="advice._id"
+            class="advice-card"
+            outlined
+          >
+            <v-card-title>{{ advice.adviceTitle }}</v-card-title>
             <v-card-text>
-              For colors and fonts, it is recommended to use CSS variables for better maintainability and easier changes in the future.
-              Create a style file and organize your styles like this:
-              <pre style="text-align: left;"><code>
-                :root {
-                  --primary-color: #4E89FD;
-                  --secondary-color: #A24CFE;
-                  --font-family: 'DM Sans', sans-serif;
-                }</code></pre>
+              <p>{{ advice.adviceDescription.suggestion }}</p>
+              <p><strong>Incorrect Code:</strong></p>
+              <pre style="text-align: left;"><code>{{ advice.adviceDescription.incorrectCode }}</code></pre>
+              <p><strong>Correct Code:</strong></p>
+              <pre style="text-align: left;"><code>{{ advice.adviceDescription.correctCode }}</code></pre>
             </v-card-text>
           </v-card>
 
@@ -118,6 +136,7 @@ import MonacoEditor from "@/components/MonacoEditor.vue";
   border-radius: 10px;
   padding: 10px;
   background-color: #f9f9f9;
+  border-color: #624f82;
 }
 
 .success {
