@@ -1,10 +1,10 @@
 <script setup>
-import HomeScreen from '../components/HomeScreen.vue'
+import AdviceArea from '../components/AdviceArea.vue'
 </script>
 
 <template>
   <main class="home">
-    <HomeScreen />
+    <AdviceArea />
   </main>
 </template>
 

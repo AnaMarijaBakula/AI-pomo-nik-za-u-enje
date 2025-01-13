@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import UploadProjectView from '../views/UploadProjectView.vue'
+import AdviceAreaView from "@/views/AdviceAreaView.vue";
 
 
 
@@ -17,6 +18,11 @@ const router = createRouter({
       path: '/uploadproject',
       name: 'uploadproject',
       component: UploadProjectView,
+    },
+    {
+      path: '/advice',
+      name: 'advice',
+      component: AdviceAreaView,
     },
   ],
 })

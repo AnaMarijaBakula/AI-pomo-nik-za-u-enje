@@ -6,17 +6,14 @@
   box-sizing: border-box;
 }
 
-/* Osnovni stil za tijelo stranice */
 body {
   font-family: 'Arial', sans-serif;
 }
 
-/* Postavke za cijeli layout */
 #app {
   height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
 }

@@ -3,14 +3,14 @@ defineProps(['style']);
 </script>
 
 <template>
-  <div class="style_filled_1">
-    <span class="text_3"> Sign In </span>
+  <div class="style_singin">
+    <span class="sing_in"> Sign In </span>
   </div>
 </template>
 
 <style scoped>
 /* Style=Filled */
-.style_filled_1 {
+.style_singin {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,11 +19,9 @@ defineProps(['style']);
   padding-bottom: 11px;
   padding-left: 19px;
   gap: 10px;
-  flex-shrink: 0;
-  overflow: hidden;
+  flex-shrink: 0;/* Sprečava smanjivanje gumba */
   border-radius: 50px;
-  border-width: 1px;
-  border-style: solid;
+  border-width: 1px;/* Debljina obruba */
   border-color: #624f82;
   background-color: #624f82;
   font-size: 16px;
@@ -32,12 +30,12 @@ defineProps(['style']);
   line-height: 24px;
   letter-spacing: 0.5px;
   color: #ffffff;
-  white-space: pre;
-  position: relative;
+  white-space: pre;/* Zadržava razmake i prijelome unutar teksta */
+  position: relative;/*Pozicjoniranje gubma*/
 }
 
 /* Do something */
-.text_3 {
+.sing_in {
   flex-shrink: 0;
 }
 </style>
