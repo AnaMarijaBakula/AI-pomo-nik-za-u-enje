@@ -17,9 +17,11 @@ app.use(express.json());
 
 const codeAnalysisRoute = require('./routes/codeAnalysisRoute');
 const uplaodFilesRoute = require('./routes/uploadFilesRoute');
+const userRoutes = require('./routes/userRoutes');
 
 app.use('/api/advice', codeAnalysisRoute);
 app.use('/api/upload', uplaodFilesRoute);
+app.use('/api/user', userRoutes);
 
 //Connecting to the database
 const connectDb = require('./config/dbConnection');

@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from "axios"; // Uvoz axios-a
 import FrameCenter from "@/components/FrameCenter.vue";
 
 export default {
@@ -45,20 +46,34 @@ export default {
     return {
       role: null,
       username: '',
-      password: ''
+      password: '',
     };
   },
   methods: {
     setRole(role) {
       this.role = role;
     },
-    submitForm() {
-      // Here you can add logic for user login
-      alert(`You are logged in as ${this.role} with username ${this.username}`);
-    }
+    async submitForm() {
+      try {
+        // Slanje POST zahtjeva za prijavu korisnika
+        const response = await axios.post('http://localhost:5001/api/user/register', {
+          email: this.username,
+          password: this.password,
+        });
+
+        // Uspješno prijavljen
+        console.log("Prijava uspješna:", response.data);
+        alert(`Logged in successfully as ${this.role}`);
+      } catch (error) {
+        // Ako dođe do greške
+        console.error("Greška pri prijavi:", error.message);
+        alert(`Error: ${error.response.data.message}`);
+      }
+    },
   }
 };
 </script>
+
 
 <style scoped>
 /* Osnovni stilovi za stranicu prijave */
