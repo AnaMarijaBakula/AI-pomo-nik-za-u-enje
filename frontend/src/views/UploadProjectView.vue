@@ -4,13 +4,13 @@ import UploadProject from '../components/UploadProject.vue'
 </script>
 
 <template>
-  <main class="home">
+  <main class="uploadproject">
     <UploadProject />
   </main>
 </template>
 
 <style scoped>
-.home {
+.uploadproject {
   background-image: url('@/assets/GetStartedBackground.png');
   background-size: cover;
   background-position: center;

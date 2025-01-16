@@ -29,7 +29,7 @@ onMounted(fetchAdvice);
       </div>
       <div class="advicearea">
         <div class="advice-header">
-          <h2> Tips for better practice </h2>
+          <h2> Savjeti </h2>
         </div>
         <div class="advice-cards">
 

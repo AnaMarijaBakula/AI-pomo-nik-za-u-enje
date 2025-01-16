@@ -1,15 +1,16 @@
 <script setup>
-import AdviceArea from '../components/AdviceArea.vue'
+
+import SignIn from "@/components/SignIn.vue";
 </script>
 
 <template>
-  <main class="advicearea">
-    <AdviceArea />
+  <main class="home">
+    <SignIn />
   </main>
 </template>
 
 <style scoped>
-.advicearea {
+.home {
   background-image: url('@/assets/GetStartedBackground.png');
   background-size: cover;
   background-position: center;

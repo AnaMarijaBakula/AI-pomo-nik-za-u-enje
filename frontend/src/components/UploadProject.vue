@@ -2,14 +2,16 @@
 defineProps(['style']);
 import FrameCenter from "@/components/FrameCenter.vue";
 import { ref } from 'vue';
+import axios from "axios";
 
-const files = ref([]);
+const files = ref([]); //Reaktivne varijable
 
+//Funkcija koja se poziva kad korisnik odabere datoteke putem inputa
 const handleFileSelect = (event) => {
-  const selectedFiles = event.target.files;
-  files.value = Array.from(selectedFiles);
+  const selectedFiles = event.target.files; //Dohvaća sve odabrane datoteke
+  files.value = Array.from(selectedFiles); //Pohrani datoteke u files varijablu kao niz
 };
-
+//drop funkcija koja trenutno ne radi
 const handleDrop = (event) => {
   event.preventDefault();
   const droppedFiles = event.dataTransfer.files;
@@ -18,6 +20,34 @@ const handleDrop = (event) => {
 
 const triggerFileInput = () => {
   document.getElementById('fileInput').click();
+};
+
+// Funkcija za slanje datoteka na backend
+const uploadFilesToBackend = async () => {
+  if (files.value.length === 0) {
+    alert('Nema datoteka za upload.');
+    return;
+  }
+
+  const formData = new FormData(); // Kreira novi FormData objekt
+
+  // Dodajte sve odabrane datoteke u FormData
+  files.value.forEach(file => {
+    formData.append('files', file); // Ključ je 'files', a value je datoteka
+  });
+
+  try {
+    const response = await axios.post('http://localhost:5001/api/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data', // Postavljanje odgovarajuće Content-Type
+      },
+    });
+    alert('Datoteke su uspješno poslane!');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Greška prilikom slanja datoteka:', error);
+    alert('Došlo je do greške prilikom slanja datoteka.');
+  }
 };
 </script>
 <template>
