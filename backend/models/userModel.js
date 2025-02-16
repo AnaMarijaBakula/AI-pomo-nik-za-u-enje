@@ -1,19 +1,41 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-    email: {
+    username: {
         type: String,
-        required: true,
-        unique: true,  // Osigurajte da e-mail bude jedinstven
-        trim: true,
-        lowercase: true,  // Ako želite da e-mail bude osjetljiv na velika i mala slova
+        unique: true, // Ovdje postavljate jedinstveni indeks
+        required: true
     },
+    email: {
+            type: String,
+            required: true,
+            unique: true },
+
     password: {
-        type: String,
-        required: true,
-        minlength: 6,  // Minimalna duljina lozinke
-        maxlength: 100  // Maksimalna duljina lozinke
-    }
+            type: String,
+            required: true },
+
+    role: {
+            type: String,
+            enum: ['user', 'guest', 'admin'],
+            default: 'user' }, // Dodana uloga
+
+    createdAt: {
+            type: Date,
+            default: Date.now },
+
+    expiresAt: {
+            type: Date } // Samo za goste
 });
 
-module.exports = mongoose.model('User', userSchema);
+// Ako je gost, postavi trajanje od 3 dana
+userSchema.pre('save', function (next) {
+    if (this.role === 'guest' && !this.expiresAt) {
+        this.expiresAt = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+    }
+    next();
+});
+
+const User = mongoose.model('User', userSchema);
+module.exports = User;

@@ -1,60 +1,68 @@
 const bcrypt = require('bcryptjs');
-const User = require('../models/userModel');  // Tu dodajemo model korisnika
+const User = require('../models/userModel');
 
-// Funkcija za registraciju novog korisnika
-async function registerUser(email, password) {
+// Registracija korisnika (user/guest)
+const registerUser = async (req, res) => {
     try {
-        // Provjeriti je li e-mail već zauzet
+        console.log(req.body); // Pratite tijelo zahtjeva
+        const { username, email, password, role } = req.body;
+
         const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            // Ako korisnik s istim e-mailom već postoji, provjerite lozinku
-            const isMatch = await bcrypt.compare(password, existingUser.password);
-            if (isMatch) {
-                // Ako je lozinka ispravna, možete se prijaviti s istim e-mailom
-                console.log('Korisnik već postoji, ali lozinka je ispravna.');
-                return existingUser;  // Vratite korisnika jer je prijava uspješna
-            } else {
-                throw new Error('Neispravna lozinka za taj e-mail.');
-            }
-        } else {
-            // Ako e-mail nije zauzet, hashirajte lozinku i spremite novog korisnika
-            const hashedPassword = await bcrypt.hash(password, 10);
-            const newUser = new User({
-                email,        // E-mail korisnika
-                password: hashedPassword  // Hashirana lozinka
-            });
+        if (existingUser) return res.status(400).json({ message: "Korisnik već postoji" });
 
-            // Spremanje korisnika u bazu podataka
-            await newUser.save();
-            console.log('Korisnik uspješno registriran!');
-            return newUser;  // Vratite novog korisnika
+        if (role === 'admin') return res.status(403).json({ message: "Ne možete registrirati admina ovim putem" });
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        let expiresAt = null;
+        if (role === 'guest') {
+            expiresAt = new Date();
+            expiresAt.setDate(expiresAt.getDate() + 3);
         }
-    } catch (error) {
-        console.error('Greška pri registraciji:', error.message);
-        throw error;
-    }
-}
 
-// Funkcija za prijavu korisnika
-async function loginUser(email, password) {
+        const newUser = new User({ username, email, password: hashedPassword, role, expiresAt });
+
+        await newUser.save();
+        res.status(201).json({ message: `${role === 'guest' ? "Gost" : "Korisnik"} registriran` });
+    } catch (error) {
+        console.error(error); // Detaljno logiranje greške
+        res.status(500).json({ message: "Greška na serveru", error: error.message });
+    }
+};
+
+
+// Prijava korisnika (admin/user/guest)
+const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
     try {
-        const user = await User.findOne({ email }); // Korisnici se prijavljuju s e-mailom
-        if (!user) {
-            throw new Error('Korisnik nije pronađen');
-        }
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ message: "Korisnik nije pronađen" });
 
-        // Provjera lozinke
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            throw new Error('Neispravna lozinka');
+        if (!isMatch) return res.status(400).json({ message: "Neispravna lozinka" });
+
+        // Ako je gost i isteklo mu je vrijeme, izbriši ga
+        if (user.role === 'guest') {
+            if (!user.expiresAt) {
+                return res.status(400).json({ message: "Gost nema datum isteka" });
+            }
+
+            if (new Date() > user.expiresAt) {
+                await User.deleteOne({ _id: user._id });
+                return res.status(403).json({ message: "Gost je istekao" });
+            }
         }
 
-        console.log('Prijava uspješna');
-        return user;  // Povratak podataka o korisniku
+        res.status(200).json({ message: `Prijava uspješna (${user.role})`, role: user.role });
     } catch (error) {
-        console.error('Greška pri prijavi:', error.message);
-        throw error;
+        res.status(500).json({ message: "Greška na serveru" });
     }
-}
+};
 
-module.exports = { registerUser, loginUser };
+// Provjera autentifikacije
+const checkAuth = (req, res) => {
+    res.status(200).json({ message: "Provjera autentifikacije" });
+};
+
+module.exports = { registerUser, loginUser, checkAuth };
